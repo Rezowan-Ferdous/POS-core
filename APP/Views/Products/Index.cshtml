@@ -1,0 +1,84 @@
+﻿@model IEnumerable<MODELS.Product>
+
+@{
+    ViewData["Title"] = "Product";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int sl = 0;
+}
+
+<h1>Index</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Weight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Brand)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductColor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductSize)
+            </th>
+
+            <th>
+                <partial name="PartialViews/_Create" />
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>@(++sl)</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                <img src="~/images/Product/@item.Image" alt="Product Image" class="img-fluid" width="120" />
+            </td>            
+            <td>
+                @item.Weight
+                @Html.DisplayFor(modelItem => item.UnitOfMeasure.UnitName)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand.BrandName)
+            </td>
+            <td>
+                @if (item.ProductColor == null)
+                {
+                    <span>None</span>
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => item.ProductColor.ColorName)
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductSize.SizeName)
+            </td>
+
+            <td>
+                <partial name="PartialViews/_EditDetailDelete" model="@item.Id" />
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

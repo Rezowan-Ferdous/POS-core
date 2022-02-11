@@ -1,0 +1,61 @@
+﻿@model IEnumerable<MODELS.Category>
+
+@{
+    ViewData["Title"] = "Category";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int sl = 0;
+}
+
+<table class="table table-responsive table-hover table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th style="width:60px;">
+                @Html.DisplayNameFor(model => model.CategoryIcon)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryId)
+            </th>
+
+            <th><a asp-action="Create" class="btn btn-info btn-sm">Create New</a></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr >
+            <td>@(++sl)</td>
+            
+            <td>
+                <img src="~/images/Category/@item.CategoryIcon" alt="Icon" class="img-circle img-fluid img-thumbnail" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryName)
+            </td>
+            <td>
+                @if (item.CategoryId != null && item.CategoryId != 0)
+                {
+                    @Html.DisplayFor(modelItem => item.Parent.CategoryName)
+                }
+                else if (item.CategoryId == 0)
+                {
+                    <span>Root</span>
+                }
+                else
+                {
+                    <span>Root</span>
+                }
+
+            </td>
+
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

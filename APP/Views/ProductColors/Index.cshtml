@@ -1,0 +1,43 @@
+﻿@model IEnumerable<MODELS.ProductColor>
+
+@{
+    ViewData["Title"] = "Color";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int sl = 0;
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>
+                @Html.DisplayNameFor(model => model.ColorName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ColorCode)
+            </th>  
+            <th>
+                <a asp-action="Create" class="btn btn-info btn-sm"><i class="fa fa-plus"></i> Add New</a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr class="text-center">
+            <td>@(++sl)</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ColorName)
+            </td>
+            <td style="background:@item.ColorCode">
+                @Html.DisplayFor(modelItem => item.ColorCode)
+            </td>
+            
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

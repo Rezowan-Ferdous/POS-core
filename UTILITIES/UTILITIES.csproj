@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="AutoMapperSetting\**" />
+    <Compile Remove="PagginationSetting\**" />
+    <Compile Remove="SessionSetting\**" />
+    <EmbeddedResource Remove="AutoMapperSetting\**" />
+    <EmbeddedResource Remove="PagginationSetting\**" />
+    <EmbeddedResource Remove="SessionSetting\**" />
+    <None Remove="AutoMapperSetting\**" />
+    <None Remove="PagginationSetting\**" />
+    <None Remove="SessionSetting\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BLL\BLL.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Component\" />
+  </ItemGroup>
+
+</Project>

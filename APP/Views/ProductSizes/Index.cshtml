@@ -1,0 +1,44 @@
+﻿@model IEnumerable<MODELS.ProductSize>
+
+@{
+    ViewData["Title"] = "Product Size";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int sl = 0;
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>
+                @Html.DisplayNameFor(model => model.SizeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShortName)
+            </th>
+           
+            <th>
+                <a asp-action="Create" class="btn btn-sm btn-info"><i class="fa fa-plus"></i> Create New</a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr class="text-center">
+            <td>@(++sl)</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SizeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShortName)
+            </td>
+           
+            <td class="text-light">
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
